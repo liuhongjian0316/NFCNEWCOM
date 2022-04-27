@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">NFC执行器</string>
+    <string name="activate_help">手机号码已激活如何解决?</string>
+    <string name="activate_now">立即激活</string>
+    <string name="get_sms_code">获取</string>
+    <string name="cdkey">激活码</string>
+    <string name="phone">手机号码</string>
+    <string name="reset_code">重置</string>
+    <string name="please_input">请输入</string>
+    <string name="please_input_right_code">请输入有效手机号</string>
+</resources>
