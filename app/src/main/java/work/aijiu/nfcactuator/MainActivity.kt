@@ -57,7 +57,7 @@ class MainActivity : ComponentActivity() {
     }
     fun getActivateState(): Boolean {
 //        val deviceId = DeviceUtil().getDeviceId(this)
-        return DeviceUuidFactory(this).getUuid().toString() != "e067a948-fbbe-37a7-b9b4-9db59155d2ec"
+        return DeviceUuidFactory(this).getUuid().toString() == "e067a948-fbbe-37a7-b9b4-9db59155d2ec"
     }
 }
 

@@ -22,3 +22,5 @@ val white150 = Color(0x26FFFFFF)
 val white300 = Color(0xFFF0F0F0)
 val white800 = Color(0xCCFFFFFF)
 val white850 = Color(0xD9FFFFFF)
+
+val Activite_tip_Color = Color(0xFFC53B3B)
