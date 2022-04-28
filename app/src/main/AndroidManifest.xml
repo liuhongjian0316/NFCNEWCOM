@@ -26,6 +26,11 @@
         </activity>
         <!--激活页面-->
         <activity android:name=".activities.ActiviteActivity"/>
+        <activity android:name=".activities.ResetActiviteActivity"/>
+        <activity android:name=".activities.AutoActivity"/>
+
+
+
     </application>
 
 </manifest>

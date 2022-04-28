@@ -8,4 +8,5 @@
     <string name="reset_code">重置</string>
     <string name="please_input">请输入</string>
     <string name="please_input_right_code">请输入有效手机号</string>
+    <string name="auto_text">自动识别中</string>
 </resources>

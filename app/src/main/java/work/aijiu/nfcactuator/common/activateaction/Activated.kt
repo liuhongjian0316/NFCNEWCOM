@@ -5,6 +5,7 @@ import android.content.Intent
 import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
 import work.aijiu.nfcactuator.MainActivity
+import work.aijiu.nfcactuator.activities.AutoActivity
 import work.aijiu.nfcactuator.interfaces.StartBefore
 import java.util.*
 import kotlin.system.exitProcess
@@ -28,9 +29,9 @@ class Activated:StartBefore {
     override fun startup(context: Context,state: Boolean) {
        // 直接进入主页
         if(state){
-//            val intent = Intent(context, WelcomeActivity::class.java)
-//            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-//            context?.startActivity(intent)
+            val intent = Intent(context, AutoActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            context?.startActivity(intent)
         }
     }
 }

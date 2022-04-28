@@ -14,9 +14,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.view.ViewCompat
 import coil.ImageLoader
 import coil.compose.rememberAsyncImagePainter
 import coil.decode.GifDecoder
@@ -50,6 +52,8 @@ class MainActivity : ComponentActivity() {
             override fun run() {
                 activateContext1.startBefore(applicationContext,getActivateState())
                 activateContext2.startBefore(applicationContext,getActivateState())
+                finish()
+//                overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out)
             }
         }
         val timer = Timer()
@@ -57,13 +61,10 @@ class MainActivity : ComponentActivity() {
     }
     fun getActivateState(): Boolean {
 //        val deviceId = DeviceUtil().getDeviceId(this)
-        return DeviceUuidFactory(this).getUuid().toString() == "e067a948-fbbe-37a7-b9b4-9db59155d2ec"
+//        return DeviceUuidFactory(this).getUuid().toString() == "e067a948-fbbe-37a7-b9b4-9db59155d2ec"
+        return true
     }
 }
-
-
-
-
 
 
 @Preview(showBackground = true, showSystemUi = true, uiMode = Configuration.UI_MODE_NIGHT_YES)

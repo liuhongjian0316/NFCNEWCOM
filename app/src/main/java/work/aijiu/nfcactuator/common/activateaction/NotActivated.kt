@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import work.aijiu.nfcactuator.activities.ActiviteActivity
 import work.aijiu.nfcactuator.interfaces.StartBefore
+import kotlin.system.exitProcess
 
 /**
  *
