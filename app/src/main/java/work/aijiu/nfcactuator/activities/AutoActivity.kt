@@ -1,5 +1,6 @@
 package work.aijiu.nfcactuator.activities
 
+import android.content.Intent
 import android.content.res.Configuration
 import android.graphics.fonts.FontFamily
 import android.graphics.fonts.FontStyle
@@ -12,6 +13,7 @@ import androidx.compose.animation.core.*
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.LocalTextStyle
@@ -79,6 +81,8 @@ class AutoActivity : ComponentActivity(){
 @Preview(showSystemUi = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun AutoContent() {
+    var context = LocalContext.current
+
     val painter = rememberAsyncImagePainter(
         model =  ImageRequest.Builder(LocalContext.current)
             .data("https://www.aijiu.work/resources/images/auto6.gif")
@@ -109,6 +113,12 @@ fun AutoContent() {
         Spacer(modifier = Modifier.height(50.dp))
         AutoText()
         LoadingRow()
+
+        Text(text = "手动选择", modifier = Modifier.clickable {
+            val intent = Intent(context, ChoiceActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            context?.startActivity(intent)
+        })
     }
 }
 

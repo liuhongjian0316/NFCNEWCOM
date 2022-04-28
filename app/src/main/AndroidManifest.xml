@@ -28,6 +28,7 @@
         <activity android:name=".activities.ActiviteActivity"/>
         <activity android:name=".activities.ResetActiviteActivity"/>
         <activity android:name=".activities.AutoActivity"/>
+        <activity android:name=".activities.ChoiceActivity"/>
 
 
 
