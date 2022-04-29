@@ -5,7 +5,6 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.content.res.Configuration
 import android.nfc.NfcAdapter
 import android.nfc.tech.NfcA
 import android.os.Bundle
@@ -27,13 +26,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import work.aijiu.nfcactuator.R
@@ -73,7 +72,7 @@ class ResetActiviteActivity : ComponentActivity(){
         StatusBarUtils.setTextDark(this, true);
         setContent {
             NfcActuatorTheme{
-                ResetContent(this,left={
+                ResetContent(left={
                     finish()
                 })
             }
@@ -91,9 +90,9 @@ class ResetActiviteActivity : ComponentActivity(){
 
 }
 
-@Preview(showBackground = true, showSystemUi = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun ResetContent(context: Context, left: () -> Unit) {
+fun ResetContent(left: () -> Unit) {
+    var context = LocalContext.current
     var phone by remember { mutableStateOf("") }
     var phoneError by remember { mutableStateOf(false)}
     var cdkey by remember { mutableStateOf("") }

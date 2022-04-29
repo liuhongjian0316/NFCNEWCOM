@@ -9,4 +9,43 @@
     <string name="please_input">请输入</string>
     <string name="please_input_right_code">请输入有效手机号</string>
     <string name="auto_text">自动识别中</string>
+
+    <string name="choice_product">选择产品</string>
+    <string name="unit_valve">单元阀</string>
+    <string name="rom_valve">户用阀</string>
+    <string name="zxc_valve">直行程</string>
+    <string name="hrz_valve">换热站</string>
+
+    <string name="u1">U1 单元物联网温度平衡阀</string>
+    <string name="u2">U2 单元物联网温度平衡阀</string>
+    <string name="r1">R1 单元物联网温度平衡阀</string>
+    <string name="r2">R2 单元物联网温度平衡阀</string>
+    <string name="zxc">直行程电动调节阀</string>
+    <string name="qf">电动球阀</string>
+    <string name="e1">E1 换热站物联网平衡阀</string>
+    <string name="expect">敬请期待</string>
+
+    <string name="ctr_open">控制开度</string>
+    <string name="feed_open">反馈开度</string>
+    <string name="supply_temp">实际供温</string>
+    <string name="return_temp">实际回温</string>
+    <string name="supply_pressure">实际供压</string>
+    <string name="return_pressure">实际回压</string>
+    <string name="software_version">软件版本</string>
+
+
+    <string name="local_ctr">本地控制</string>
+    <string name="com_mode">通讯模式</string>
+    <string name="rs_address">RS485地址</string>
+    <string name="parity">校验</string>
+    <string name="baud_rate">波特率</string>
+    <string name="self_test">自检模式</string>
+
+
+    <string name="read">读</string>
+    <string name="write">写</string>
+
+
+
+
 </resources>
