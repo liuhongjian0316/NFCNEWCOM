@@ -36,7 +36,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.launch
 import work.aijiu.nfcactuator.R
-import work.aijiu.nfcactuator.enum.ProductEnum
+import work.aijiu.nfcactuator.enum.CommonEnum
 import work.aijiu.nfcactuator.ui.theme.NfcActuatorTheme
 import work.aijiu.nfcactuator.utils.StatusBarUtils
 
@@ -164,7 +164,7 @@ private fun ChoiceContent() {
                         .clip(CircleShape)
                         .height(36.dp)
                         .width(36.dp)
-                        .background(Color.Gray)
+                        .background(Color(0xFFC5C5C5))
                         .clickable {
                             scope.launch {
                                 scaffoldState.drawerState.apply {
@@ -190,25 +190,25 @@ private fun ChoiceContent() {
                         ProductTypeText(R.string.unit_valve)
                     }
                     item {
-                        ProductCard(ProductEnum.Product.U)
+                        ProductCard(CommonEnum.Product.U)
                     }
                     item {
                         ProductTypeText(R.string.rom_valve)
                     }
                     item {
-                        ProductCard(ProductEnum.Product.R)
+                        ProductCard(CommonEnum.Product.R)
                     }
                     item {
                         ProductTypeText(R.string.zxc)
                     }
                     item {
-                        ProductCard(ProductEnum.Product.ZXC)
+                        ProductCard(CommonEnum.Product.ZXC)
                     }
                     item {
                         ProductTypeText(R.string.hrz_valve)
                     }
                     item {
-                        ProductCard(ProductEnum.Product.E)
+                        ProductCard(CommonEnum.Product.E)
                     }
                 }
             }
@@ -280,7 +280,7 @@ private fun LazyListState.ScrollTop(): Int {
 }
 
 @Composable
-private fun ProductCard(type: ProductEnum.Product) {
+private fun ProductCard(type: CommonEnum.Product) {
     BoxWithConstraints {
         val width = maxWidth
         if (maxWidth < 400.dp) {
@@ -289,22 +289,22 @@ private fun ProductCard(type: ProductEnum.Product) {
             Row(modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment =  Alignment.CenterVertically) {
-                if(type == ProductEnum.Product.U){
+                if(type == CommonEnum.Product.U){
                     ProductCardItem(itemWidth,R.string.u1,R.drawable.u1)
                     Spacer(modifier = Modifier.width(5.dp))
                     ProductCardItem(itemWidth,R.string.u2,R.drawable.u2)
                 }
-                if(type == ProductEnum.Product.R){
+                if(type == CommonEnum.Product.R){
                     ProductCardItem(itemWidth,R.string.r1,R.drawable.r1)
                     Spacer(modifier = Modifier.width(5.dp))
                     ProductCardItem(itemWidth,R.string.r2,R.drawable.r2)
                 }
-                if(type == ProductEnum.Product.ZXC){
+                if(type == CommonEnum.Product.ZXC){
                     ProductCardItem(itemWidth,R.string.zxc,R.drawable.dsetv)
                     Spacer(modifier = Modifier.width(5.dp))
                     ProductCardItem(itemWidth,R.string.qf,R.drawable.ball)
                 }
-                if(type == ProductEnum.Product.E){
+                if(type == CommonEnum.Product.E){
                     ProductCardItem(itemWidth,R.string.e1,R.drawable.e1)
                     Spacer(modifier = Modifier.width(5.dp))
                     ProductCardExpect(itemWidth)

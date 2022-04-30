@@ -44,8 +44,33 @@
 
     <string name="read">读</string>
     <string name="write">写</string>
+    <string name="default_txt">默认</string>
+    <string name="choice_txt">选择</string>
+    <string name="cancel">取消</string>
+    <string name="sure">确定</string>
 
+    <array name="com_list">
+        <item>NB</item>
+        <item>RS485</item>
+    </array>
 
+    <array name="parity_list">
+        <item>无校验(默认)</item>
+        <item>奇校验</item>
+        <item>偶校验</item>
+    </array>
+
+    <array name="baud_rate_list">
+        <item>2400</item>
+        <item>4800</item>
+        <item>9600</item>
+        <item>19200</item>
+    </array>
+
+    <array name="self_test_list">
+        <item>上电自检测</item>
+        <item>手动自检测</item>
+    </array>
 
 
 </resources>

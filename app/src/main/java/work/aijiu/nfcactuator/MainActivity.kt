@@ -8,17 +8,17 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
 import coil.ImageLoader
 import coil.compose.rememberAsyncImagePainter
 import coil.decode.GifDecoder
@@ -28,14 +28,12 @@ import work.aijiu.nfcactuator.common.activateaction.ActivateContext
 import work.aijiu.nfcactuator.common.activateaction.Activated
 import work.aijiu.nfcactuator.common.activateaction.NotActivated
 import work.aijiu.nfcactuator.ui.theme.NfcActuatorTheme
-import work.aijiu.nfcactuator.utils.DeviceUuidFactory
-import work.aijiu.nfcactuator.utils.StatusBarUtils
 import java.util.*
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        StatusBarUtils.setTextDark(this, true);
+        WindowCompat.setDecorFitsSystemWindows(window, false)
         setContent {
             NfcActuatorTheme{
                 WeclomeContent()

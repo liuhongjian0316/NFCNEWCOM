@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/newNfc/app/src/main/res/drawable/ic_com_mode.xml" value="0.1815" />
+        <entry key="..\:/newNfc/app/src/main/res/drawable/ic_localcontrol.xml" value="0.1815" />
+        <entry key="..\:/newNfc/app/src/main/res/drawable/ic_open.xml" value="0.1815" />
+        <entry key="..\:/newNfc/app/src/main/res/drawable/ic_pressure.xml" value="0.1815" />
         <entry key="..\:/nfc-refactor/nfcActuator/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2985" />
       </map>
     </option>

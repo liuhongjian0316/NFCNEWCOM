@@ -39,12 +39,12 @@ object StatusBarUtils {
     fun getHeight(context: Context): Int {
         var statusBarHeight = 0
         try {
-            val resourceId: Int = context.getResources().getIdentifier(
+            val resourceId: Int = context.resources.getIdentifier(
                 "status_bar_height", "dimen",
                 "android"
             )
             if (resourceId > 0) {
-                statusBarHeight = context.getResources().getDimensionPixelSize(resourceId)
+                statusBarHeight = context.resources.getDimensionPixelSize(resourceId)
             }
         } catch (e: Exception) {
             e.printStackTrace()
@@ -75,8 +75,8 @@ object StatusBarUtils {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION)
-            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE)
-            window.setStatusBarColor(color)
+            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+            window.statusBarColor = color
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             setColor(window, color, false)
         }
@@ -104,7 +104,7 @@ object StatusBarUtils {
         val fakeStatusBarView: View = decorView.findViewById(FAKE_STATUS_BAR_VIEW_ID)
         if (fakeStatusBarView != null) {
             fakeStatusBarView.setBackgroundColor(color)
-            if (fakeStatusBarView.getVisibility() === View.GONE) {
+            if (fakeStatusBarView.visibility === View.GONE) {
                 fakeStatusBarView.visibility = View.VISIBLE
             }
         } else {

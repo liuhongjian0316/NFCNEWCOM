@@ -65,6 +65,12 @@ dependencies {
     implementation("androidx.compose.runtime:runtime-livedata:$compose_version")
     implementation("androidx.compose.runtime:runtime-rxjava2:$compose_version")
 
+    implementation("com.google.accompanist:accompanist-systemuicontroller:$systemuicontroller_version")
+    implementation "com.google.accompanist:accompanist-insets:$systemuicontroller_version"
+    implementation "com.google.accompanist:accompanist-insets-ui:$systemuicontroller_version"
+
+
+
     // 加载网路图片
     implementation("io.coil-kt:coil-compose:2.0.0-rc03")
     implementation("io.coil-kt:coil-gif:2.0.0-rc03")
