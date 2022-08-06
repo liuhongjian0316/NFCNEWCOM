@@ -1,5 +1,6 @@
 package work.aijiu.nfcactuator.activities
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
@@ -26,8 +27,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -53,12 +56,12 @@ import work.aijiu.nfcactuator.utils.StatusBarUtils
  * @UpdateRemark:   更新说明
  * @Version:        1.0
  */
-class ChoiceActivity : ComponentActivity(){
+class ChoiceActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         StatusBarUtils.setTextDark(this, true);
         setContent {
-            NfcActuatorTheme{
+            NfcActuatorTheme {
                 ChoiceContent()
             }
         }
@@ -66,6 +69,7 @@ class ChoiceActivity : ComponentActivity(){
 }
 
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Preview(showSystemUi = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun ChoiceContent() {
@@ -75,17 +79,13 @@ private fun ChoiceContent() {
     Scaffold(
         scaffoldState = scaffoldState,
         drawerContent = {
-            Column(
-                modifier = Modifier.fillMaxSize().background(Color.Red)
-            ) {
-                Text("个人中心")
-            }
+            UserCenter()
         },
     ) {
-        BoxWithConstraints{
+        BoxWithConstraints {
             val width = maxWidth;
-            val alpha  = when {
-                lazyListState.ScrollTop() in 0..0 ->{
+            val alpha = when {
+                lazyListState.ScrollTop() in 0..0 -> {
                     1.0f
                 }
                 lazyListState.ScrollTop() in 1..10 -> {
@@ -125,26 +125,33 @@ private fun ChoiceContent() {
                     .fillMaxSize()
                     .padding(0.dp)
             ) {
-                Row(modifier = Modifier
-                    .height(60.dp)
-                    .fillMaxWidth()
-                    .background(
-                        color = MaterialTheme.colors.background
-                    ),
+                Row(
+                    modifier = Modifier
+                        .height(60.dp)
+                        .fillMaxWidth()
+                        .background(
+                            color = MaterialTheme.colors.background
+                        ),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.Start
                 ) {
-                    Row(modifier = Modifier
-                        .height(60.dp)
-                        .width(60.dp),
+                    Row(
+                        modifier = Modifier
+                            .height(60.dp)
+                            .width(60.dp),
                         horizontalArrangement = Arrangement.Center,
-                        verticalAlignment =  Alignment.CenterVertically){
-                        Icon(
-                            Icons.Filled.ArrowBack, contentDescription = null,
-                            tint = MaterialTheme.colors.onSurface,
-                        )
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        IconButton(onClick = {
+                            context.startActivity(Intent(context, AutoActivity::class.java))
+                        }) {
+                            Icon(
+                                Icons.Filled.ArrowBack, contentDescription = null,
+                                tint = MaterialTheme.colors.onSurface,
+                            )
+                        }
                     }
-                    if (!lazyListState.isScrollingUp()){
+                    if (!lazyListState.isScrollingUp()) {
                         Text(
                             modifier = Modifier
                                 .width(width - Dp(120f))
@@ -155,38 +162,43 @@ private fun ChoiceContent() {
                             fontSize = 16.sp,
                             fontWeight = FontWeight.Bold
                         )
-                    }else{
-                        Spacer(modifier = Modifier
-                            .height(60.dp)
-                            .width(width - Dp(120f)))
+                    } else {
+                        Spacer(
+                            modifier = Modifier
+                                .height(60.dp)
+                                .width(width - Dp(120f))
+                        )
                     }
-                    Row(modifier = Modifier
-                        .clip(CircleShape)
-                        .height(36.dp)
-                        .width(36.dp)
-                        .background(Color(0xFFC5C5C5))
-                        .clickable {
-                            scope.launch {
-                                scaffoldState.drawerState.apply {
-                                    if (isClosed) open() else close()
+                    Row(
+                        modifier = Modifier
+                            .clip(CircleShape)
+                            .height(36.dp)
+                            .width(36.dp)
+                            .background(Color(0xFFC5C5C5))
+                            .clickable {
+                                scope.launch {
+                                    scaffoldState.drawerState.apply {
+                                        if (isClosed) open() else close()
+                                    }
                                 }
-                            }
-                        },
+                            },
                         horizontalArrangement = Arrangement.Center,
-                        verticalAlignment =  Alignment.CenterVertically){
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
                         Icon(
                             Icons.Filled.Person, contentDescription = null,
                             tint = MaterialTheme.colors.onSurface,
                         )
                     }
                 }
-                LazyColumn (
-                    modifier = Modifier.padding(0.dp,0.dp,0.dp,0.dp),
-                    state = lazyListState){
-                    item{
+                LazyColumn(
+                    modifier = Modifier.padding(0.dp, 0.dp, 0.dp, 0.dp),
+                    state = lazyListState
+                ) {
+                    item {
                         ProductChoiceText(alpha)
                     }
-                    item{
+                    item {
                         ProductTypeText(R.string.unit_valve)
                     }
                     item {
@@ -217,8 +229,190 @@ private fun ChoiceContent() {
 
 }
 
+
 @Composable
-private fun ProductChoiceText(alpha:Float){
+private fun UserCenter() {
+    Column(
+        modifier = Modifier
+            .background(colorResource(id = R.color.lightgoldenrodyellow))
+            .fillMaxWidth()
+            .fillMaxHeight()
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(120.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            Row(
+                modifier = Modifier
+                    .clip(CircleShape)
+                    .height(60.dp)
+                    .width(60.dp)
+                    .background(Color(0xFFC5C5C5))
+                    .padding(10.dp)
+                    .clickable {
+
+                    },
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Icon(
+                    Icons.Filled.Person, contentDescription = null,
+                    tint = MaterialTheme.colors.onSurface,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .fillMaxHeight()
+                )
+            }
+            Spacer(
+                modifier = Modifier
+                    .height(10.dp)
+                    .fillMaxWidth()
+            )
+            Text(text = "管理员", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,)
+        }
+        Spacer(
+            modifier = Modifier
+                .height(1.dp)
+                .fillMaxWidth()
+                .background(colorResource(id = R.color.bisque))
+        )
+        Text(
+            modifier = Modifier.padding(10.dp,10.dp,0.dp,0.dp),
+            text = "基本信息", fontSize = 14.sp,
+            fontWeight = FontWeight.Bold,
+            style = TextStyle(color = colorResource(id = R.color.gray))
+        )
+        Spacer(
+            modifier = Modifier
+                .height(10.dp)
+                .fillMaxWidth()
+        )
+        UserCenterItem("用户名称","管理员")
+        UserCenterItem("手机号","131*****96")
+        UserCenterItem("APPID","****")
+        UserCenterItem("到期时间","2001-07-08 12:12:12")
+
+        Spacer(
+            modifier = Modifier
+                .height(1.dp)
+                .fillMaxWidth()
+                .background(colorResource(id = R.color.bisque))
+        )
+        Text(
+            modifier = Modifier.padding(10.dp,10.dp,0.dp,0.dp),
+            text = "基本权限", fontSize = 14.sp,
+            fontWeight = FontWeight.Bold,
+            style = TextStyle(color = colorResource(id = R.color.gray))
+        )
+        Spacer(
+            modifier = Modifier
+                .height(10.dp)
+                .fillMaxWidth()
+        )
+        UserCenterItem("U1","高级功能")
+        UserCenterItem("U2","高级功能")
+        UserCenterItem("R1","高级功能")
+        UserCenterItem("R2","高级功能")
+        UserCenterItem("E1","高级功能")
+        UserCenterItem("E2","高级功能")
+        UserCenterItem("Q","高级功能")
+
+
+        Spacer(
+            modifier = Modifier
+                .height(1.dp)
+                .fillMaxWidth()
+                .background(colorResource(id = R.color.bisque))
+        )
+        Text(
+            modifier = Modifier.padding(10.dp,10.dp,0.dp,0.dp),
+            text = "高级操作", fontSize = 14.sp,
+            fontWeight = FontWeight.Bold,
+            style = TextStyle(color = colorResource(id = R.color.gray))
+        )
+        Spacer(
+            modifier = Modifier
+                .height(10.dp)
+                .fillMaxWidth()
+        )
+        Row(modifier = Modifier) {
+            Spacer(
+                modifier = Modifier
+                    .width(10.dp)
+            )
+            Button(
+                modifier = Modifier,
+                onClick = {
+
+                }
+            ) {
+                Text(
+                    text = "刷新开启模块", fontSize = 12.sp,
+                    fontWeight = FontWeight.Bold,
+                    style = TextStyle(color = colorResource(id = R.color.white)),
+                )
+            }
+            Spacer(
+                modifier = Modifier
+                    .width(10.dp)
+            )
+            Button(
+                modifier = Modifier,
+                onClick = {
+
+                }
+            ) {
+                Text(
+                    text = "重置激活状态", fontSize = 12.sp,
+                    fontWeight = FontWeight.Bold,
+                    style = TextStyle(color = colorResource(id = R.color.white)),
+                )
+            }
+        }
+    }
+}
+
+
+@Composable
+private fun UserCenterItem(label:String,value:String){
+    Row(
+        horizontalArrangement = Arrangement.Center,
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier
+            .padding(0.dp, 6.dp)
+            .height(24.dp)
+            .fillMaxWidth()
+    ) {
+        Text(
+            text = label,
+            maxLines = 1,
+            fontSize = 16.sp,
+            color = MaterialTheme.colors.onSurface,
+            style = TextStyle(textAlign = TextAlign.Start),
+            modifier = Modifier
+                .weight(2f)
+                .align(Alignment.CenterVertically)
+                .padding(10.dp, 0.dp, 0.dp, 0.dp)
+        )
+        Text(
+            text = value,
+            maxLines = 1,
+            fontSize = 16.sp,
+            color = MaterialTheme.colors.onSurface,
+            fontWeight = FontWeight.Bold,
+            style = TextStyle(textAlign = TextAlign.Right),
+            modifier = Modifier
+                .weight(4f)
+                .padding(0.dp, 0.dp, 10.dp, 0.dp)
+        )
+    }
+}
+
+@Composable
+private fun ProductChoiceText(alpha: Float) {
     Text(
         stringResource(id = R.string.choice_product),
         modifier = Modifier
@@ -231,7 +425,7 @@ private fun ProductChoiceText(alpha:Float){
 }
 
 @Composable
-private fun ProductTypeText(stringId:Int) {
+private fun ProductTypeText(stringId: Int) {
     Text(
         stringResource(id = stringId),
         modifier = Modifier
@@ -285,27 +479,29 @@ private fun ProductCard(type: CommonEnum.Product) {
         val width = maxWidth
         if (maxWidth < 400.dp) {
             val spaceWidth = Dp(15f)
-            val itemWidth = (width-spaceWidth)/2
-            Row(modifier = Modifier.fillMaxWidth(),
+            val itemWidth = (width - spaceWidth) / 2
+            Row(
+                modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.Center,
-                verticalAlignment =  Alignment.CenterVertically) {
-                if(type == CommonEnum.Product.U){
-                    ProductCardItem(itemWidth,R.string.u1,R.drawable.u1)
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                if (type == CommonEnum.Product.U) {
+                    ProductCardItem(itemWidth, R.string.u1, R.drawable.u1)
                     Spacer(modifier = Modifier.width(5.dp))
-                    ProductCardItem(itemWidth,R.string.u2,R.drawable.u2)
+                    ProductCardItem(itemWidth, R.string.u2, R.drawable.u2)
                 }
-                if(type == CommonEnum.Product.R){
-                    ProductCardItem(itemWidth,R.string.r1,R.drawable.r1)
+                if (type == CommonEnum.Product.R) {
+                    ProductCardItem(itemWidth, R.string.r1, R.drawable.r1)
                     Spacer(modifier = Modifier.width(5.dp))
-                    ProductCardItem(itemWidth,R.string.r2,R.drawable.r2)
+                    ProductCardItem(itemWidth, R.string.r2, R.drawable.r2)
                 }
-                if(type == CommonEnum.Product.ZXC){
-                    ProductCardItem(itemWidth,R.string.zxc,R.drawable.dsetv)
+                if (type == CommonEnum.Product.ZXC) {
+                    ProductCardItem(itemWidth, R.string.zxc, R.drawable.dsetv)
                     Spacer(modifier = Modifier.width(5.dp))
-                    ProductCardItem(itemWidth,R.string.qf,R.drawable.ball)
+                    ProductCardItem(itemWidth, R.string.qf, R.drawable.ball)
                 }
-                if(type == CommonEnum.Product.E){
-                    ProductCardItem(itemWidth,R.string.e1,R.drawable.e1)
+                if (type == CommonEnum.Product.E) {
+                    ProductCardItem(itemWidth, R.string.e1, R.drawable.e1)
                     Spacer(modifier = Modifier.width(5.dp))
                     ProductCardExpect(itemWidth)
                 }
@@ -327,15 +523,14 @@ private fun ProductCard(type: CommonEnum.Product) {
 }
 
 @Composable
-private fun ProductCardExpect(width:Dp){
+private fun ProductCardExpect(width: Dp) {
     Button(
         modifier = Modifier
             .width(width)
-            .height(width)
-        ,
+            .height(width),
         colors = buttonColors(
-            backgroundColor=Color.Black.copy(0.6F),
-            contentColor=Color.Black.copy(0.6F)
+            backgroundColor = Color.Black.copy(0.6F),
+            contentColor = Color.Black.copy(0.6F)
         ),
         onClick = { /* ... */ },
         contentPadding = PaddingValues(
@@ -349,10 +544,15 @@ private fun ProductCardExpect(width:Dp){
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(text= stringResource(id = R.string.expect),modifier = Modifier
-                .padding(0.dp, 0.dp, 0.dp, 0.dp)
-                .width(width)
-                .background(MaterialTheme.colors.primary),color = Color.White,textAlign = TextAlign.Center)
+            Text(
+                text = stringResource(id = R.string.expect),
+                modifier = Modifier
+                    .padding(0.dp, 0.dp, 0.dp, 0.dp)
+                    .width(width)
+                    .background(MaterialTheme.colors.primary),
+                color = Color.White,
+                textAlign = TextAlign.Center
+            )
             Image(
                 painter = painterResource(id = R.drawable.expect),
                 contentDescription = null,
@@ -367,7 +567,7 @@ private fun ProductCardExpect(width:Dp){
 }
 
 @Composable
-private fun ProductCardItem(width:Dp,stringId:Int,drawId:Int) {
+private fun ProductCardItem(width: Dp, stringId: Int, drawId: Int) {
     val context = LocalContext.current
     Button(
         modifier = Modifier
@@ -389,13 +589,17 @@ private fun ProductCardItem(width:Dp,stringId:Int,drawId:Int) {
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(text= stringResource(id = stringId),modifier = Modifier.padding(0.dp,0.dp,0.dp,0.dp),color = Color.White)
+            Text(
+                text = stringResource(id = stringId),
+                modifier = Modifier.padding(0.dp, 0.dp, 0.dp, 0.dp),
+                color = Color.White
+            )
             Image(
                 painter = painterResource(id = drawId),
                 contentDescription = null,
                 modifier = Modifier
                     .fillMaxWidth(),
-                contentScale= ContentScale.FillWidth
+                contentScale = ContentScale.FillWidth
             )
         }
     }
