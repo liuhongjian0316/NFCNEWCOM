@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -486,22 +487,22 @@ private fun ProductCard(type: CommonEnum.Product) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 if (type == CommonEnum.Product.U) {
-                    ProductCardItem(itemWidth, R.string.u1, R.drawable.u1)
+                    ProductCardItem(itemWidth, R.string.u1, R.drawable.u1,"U1")
                     Spacer(modifier = Modifier.width(5.dp))
-                    ProductCardItem(itemWidth, R.string.u2, R.drawable.u2)
+                    ProductCardItem(itemWidth, R.string.u2, R.drawable.u2,"U2")
                 }
                 if (type == CommonEnum.Product.R) {
-                    ProductCardItem(itemWidth, R.string.r1, R.drawable.r1)
+                    ProductCardItem(itemWidth, R.string.r1, R.drawable.r1,"R1")
                     Spacer(modifier = Modifier.width(5.dp))
-                    ProductCardItem(itemWidth, R.string.r2, R.drawable.r2)
+                    ProductCardItem(itemWidth, R.string.r2, R.drawable.r2,"R2")
                 }
                 if (type == CommonEnum.Product.ZXC) {
-                    ProductCardItem(itemWidth, R.string.zxc, R.drawable.dsetv)
+                    ProductCardItem(itemWidth, R.string.zxc, R.drawable.dsetv,"Z")
                     Spacer(modifier = Modifier.width(5.dp))
-                    ProductCardItem(itemWidth, R.string.qf, R.drawable.ball)
+                    ProductCardItem(itemWidth, R.string.qf, R.drawable.ball,"!")
                 }
                 if (type == CommonEnum.Product.E) {
-                    ProductCardItem(itemWidth, R.string.e1, R.drawable.e1)
+                    ProductCardItem(itemWidth, R.string.e1, R.drawable.e1,"E1")
                     Spacer(modifier = Modifier.width(5.dp))
                     ProductCardExpect(itemWidth)
                 }
@@ -567,7 +568,7 @@ private fun ProductCardExpect(width: Dp) {
 }
 
 @Composable
-private fun ProductCardItem(width: Dp, stringId: Int, drawId: Int) {
+private fun ProductCardItem(width: Dp, stringId: Int, drawId: Int,product: String) {
     val context = LocalContext.current
     Button(
         modifier = Modifier
@@ -576,6 +577,7 @@ private fun ProductCardItem(width: Dp, stringId: Int, drawId: Int) {
         onClick = {
             val intent = Intent(context, ProductActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            intent.putExtra("product",product)
             context?.startActivity(intent)
         },
         contentPadding = PaddingValues(

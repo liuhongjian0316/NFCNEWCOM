@@ -1,9 +1,9 @@
-package work.aijiu.nfcactuator.components
+package work.aijiu.nfcactuator.components.C2
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.content.res.Configuration
+import android.util.Log
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -12,7 +12,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.*
@@ -28,7 +27,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -36,71 +34,21 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import kotlinx.coroutines.launch
 import work.aijiu.nfcactuator.R
 import work.aijiu.nfcactuator.activities.AutoActivity
+import work.aijiu.nfcactuator.components.ReadWriteAlert
 import work.aijiu.nfcactuator.enum.CommonEnum
 import work.aijiu.nfcactuator.ui.theme.Blue200
 import work.aijiu.nfcactuator.utils.StatusBarUtils
-import java.util.*
 
-object U1Product {
-
+class C2Product {
 }
 
 
-// 读写模式切换弹框
-@Composable
-fun ReadWriteAlert(openDialog: MutableState<Boolean>, mode: String) {
-    if (openDialog.value) {
-        AlertDialog(
-            modifier = Modifier
-                .width(100.dp)
-                .height(100.dp),
-            onDismissRequest = { },
-            title = {
-            },
-            text = {
-                Column(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(0.dp, 10.dp, 0.dp, 0.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center
-                ) {
-                    Icon(
-                        Icons.Filled.Info, contentDescription = null,
-                        tint = MaterialTheme.colors.onSurface,
-                        modifier = Modifier.size(44.dp)
-                    )
-                    Text(
-                        text = if (mode == "read") "读模式" else "写模式",
-                        fontSize = 16.sp,
-                        fontWeight = FontWeight.Bold
-                    )
-                }
-
-            }, buttons = {}
-        )
-
-        // 延时2秒关闭
-        val delayTask: TimerTask = object : TimerTask() {
-            override fun run() {
-                openDialog.value = false
-            }
-        }
-        val timer = Timer()
-        timer.schedule(delayTask, 1500)
-    }
-}
-
-@Preview(showSystemUi = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
-@Composable
-fun Product() {
-    U1Product()
-}
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun U1Product() {
+fun C2Product(series:Byte) {
+    Log.e("series",series.toString())
     val sysUiController = rememberSystemUiController()
     SideEffect {
         sysUiController.setStatusBarColor(
@@ -247,7 +195,7 @@ fun U1Product() {
                             modifier = Modifier.padding(0.dp),
                             elevation = Dp(0f),
                             backgroundColor = MaterialTheme.colors.primarySurface,
-                            title = { Text(text = stringResource(id = R.string.u1)) },
+                            title = { Text(text = stringResource(id = R.string.c2)) },
                             navigationIcon = {
                                 IconButton(onClick = {
                                     context.startActivity(
@@ -440,7 +388,6 @@ fun U1Product() {
             )
         }
     )
-
 }
 
 

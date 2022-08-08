@@ -499,7 +499,7 @@ private fun autoChoose(intent: Intent, tag: Tag?) {
         // 复旦微
         help.authNew(nfcA);
         val readTag = help.readTag(nfcA, 4, 4)
-        val byte: ByteArray = readTag?.get(help.RESULT_BYTE) as ByteArray
+        val readByte: ByteArray = readTag?.get(help.RESULT_BYTE) as ByteArray
         // TODO 根据山区数据进行跳转逻辑
     } else {
         // 利尔达

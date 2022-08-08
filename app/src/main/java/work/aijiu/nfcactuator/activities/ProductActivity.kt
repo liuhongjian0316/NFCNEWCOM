@@ -14,6 +14,7 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.Color
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import work.aijiu.nfcactuator.components.C2.C2Product
 import work.aijiu.nfcactuator.components.U1Product
 import work.aijiu.nfcactuator.ui.theme.NfcActuatorTheme
 import work.aijiu.nfcactuator.utils.StatusBarUtils
@@ -42,10 +43,84 @@ class ProductActivity: ComponentActivity() {
 //        StatusBarUtils.setColor(this,
 //            if(Configuration.UI_MODE_NIGHT_YES == uiMode) 0xFFFFFF else 0x000000
 //        )
-
-        setContent {
-            NfcActuatorTheme{
-                U1Product()
+        // 获取当前的产品头
+        val product = intent.getStringExtra("product")
+        val series = intent.getByteExtra("series",0x00)
+        if("U1" == product){
+            setContent {
+                NfcActuatorTheme{
+                    C2Product(series)
+                }
+            }
+        }
+        if("U2" == product){
+            setContent {
+                NfcActuatorTheme{
+                    U1Product()
+                }
+            }
+        }
+        if("R1" == product){
+            setContent {
+                NfcActuatorTheme{
+                    U1Product()
+                }
+            }
+        }
+        if("R2" == product){
+            setContent {
+                NfcActuatorTheme{
+                    U1Product()
+                }
+            }
+        }
+        if("E1" == product){
+            setContent {
+                NfcActuatorTheme{
+                    U1Product()
+                }
+            }
+        }
+        if("E2" == product){
+            setContent {
+                NfcActuatorTheme{
+                    U1Product()
+                }
+            }
+        }
+        if("Q" == product){
+            setContent {
+                NfcActuatorTheme{
+                    U1Product()
+                }
+            }
+        }
+        if("Z" == product){
+            setContent {
+                NfcActuatorTheme{
+                    U1Product()
+                }
+            }
+        }
+        if("NewQ" == product){
+            setContent {
+                NfcActuatorTheme{
+                    U1Product()
+                }
+            }
+        }
+        if("NewZ" == product){
+            setContent {
+                NfcActuatorTheme{
+                    U1Product()
+                }
+            }
+        }
+        if("NewU2" == product){
+            setContent {
+                NfcActuatorTheme{
+                    U1Product()
+                }
             }
         }
     }

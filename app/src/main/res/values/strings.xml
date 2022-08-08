@@ -24,6 +24,7 @@
     <string name="qf">电动球阀</string>
     <string name="e1">E1 换热站物联网平衡阀</string>
     <string name="expect">敬请期待</string>
+    <string name="c2">C2 中心模块</string>
 
     <string name="ctr_open">控制开度</string>
     <string name="feed_open">反馈开度</string>
