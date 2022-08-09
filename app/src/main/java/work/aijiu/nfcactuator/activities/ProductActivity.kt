@@ -3,6 +3,9 @@ package work.aijiu.nfcactuator.activities
 import android.app.UiModeManager
 import android.content.Context
 import android.content.res.Configuration
+import android.nfc.NfcAdapter
+import android.nfc.Tag
+import android.nfc.tech.NfcA
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
@@ -35,6 +38,7 @@ import java.util.*
  * @Version:        1.0
  */
 class ProductActivity: ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         StatusBarUtils.setTransparent(this)

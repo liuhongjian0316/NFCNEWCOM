@@ -183,7 +183,7 @@ fun AutoContent() {
         })
     }
     // NFC支持提示
-    CheckNFcTip(openDialog!!, message);
+    CheckNFcTip(openDialog!!, message)
     // 不支持自动识别提示
     NotSPAuto(noSpAutoDialog!!)
     // 退出应用提示框

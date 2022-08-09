@@ -1,10 +1,10 @@
 package work.aijiu.nfcactuator.activities
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -40,6 +40,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.launch
 import work.aijiu.nfcactuator.R
+import work.aijiu.nfcactuator.activities.product.c2.ProductC2Activity
 import work.aijiu.nfcactuator.enum.CommonEnum
 import work.aijiu.nfcactuator.ui.theme.NfcActuatorTheme
 import work.aijiu.nfcactuator.utils.StatusBarUtils
@@ -272,7 +273,7 @@ private fun UserCenter() {
                     .height(10.dp)
                     .fillMaxWidth()
             )
-            Text(text = "管理员", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,)
+            Text(text = "管理员", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold)
         }
         Spacer(
             modifier = Modifier
@@ -281,7 +282,7 @@ private fun UserCenter() {
                 .background(colorResource(id = R.color.bisque))
         )
         Text(
-            modifier = Modifier.padding(10.dp,10.dp,0.dp,0.dp),
+            modifier = Modifier.padding(10.dp, 10.dp, 0.dp, 0.dp),
             text = "基本信息", fontSize = 14.sp,
             fontWeight = FontWeight.Bold,
             style = TextStyle(color = colorResource(id = R.color.gray))
@@ -291,10 +292,10 @@ private fun UserCenter() {
                 .height(10.dp)
                 .fillMaxWidth()
         )
-        UserCenterItem("用户名称","管理员")
-        UserCenterItem("手机号","131*****96")
-        UserCenterItem("APPID","****")
-        UserCenterItem("到期时间","2001-07-08 12:12:12")
+        UserCenterItem("用户名称", "管理员")
+        UserCenterItem("手机号", "131*****96")
+        UserCenterItem("APPID", "****")
+        UserCenterItem("到期时间", "2001-07-08 12:12:12")
 
         Spacer(
             modifier = Modifier
@@ -303,7 +304,7 @@ private fun UserCenter() {
                 .background(colorResource(id = R.color.bisque))
         )
         Text(
-            modifier = Modifier.padding(10.dp,10.dp,0.dp,0.dp),
+            modifier = Modifier.padding(10.dp, 10.dp, 0.dp, 0.dp),
             text = "基本权限", fontSize = 14.sp,
             fontWeight = FontWeight.Bold,
             style = TextStyle(color = colorResource(id = R.color.gray))
@@ -313,13 +314,13 @@ private fun UserCenter() {
                 .height(10.dp)
                 .fillMaxWidth()
         )
-        UserCenterItem("U1","高级功能")
-        UserCenterItem("U2","高级功能")
-        UserCenterItem("R1","高级功能")
-        UserCenterItem("R2","高级功能")
-        UserCenterItem("E1","高级功能")
-        UserCenterItem("E2","高级功能")
-        UserCenterItem("Q","高级功能")
+        UserCenterItem("U1", "高级功能")
+        UserCenterItem("U2", "高级功能")
+        UserCenterItem("R1", "高级功能")
+        UserCenterItem("R2", "高级功能")
+        UserCenterItem("E1", "高级功能")
+        UserCenterItem("E2", "高级功能")
+        UserCenterItem("Q", "高级功能")
 
 
         Spacer(
@@ -329,7 +330,7 @@ private fun UserCenter() {
                 .background(colorResource(id = R.color.bisque))
         )
         Text(
-            modifier = Modifier.padding(10.dp,10.dp,0.dp,0.dp),
+            modifier = Modifier.padding(10.dp, 10.dp, 0.dp, 0.dp),
             text = "高级操作", fontSize = 14.sp,
             fontWeight = FontWeight.Bold,
             style = TextStyle(color = colorResource(id = R.color.gray))
@@ -378,7 +379,7 @@ private fun UserCenter() {
 
 
 @Composable
-private fun UserCenterItem(label:String,value:String){
+private fun UserCenterItem(label: String, value: String) {
     Row(
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically,
@@ -487,22 +488,22 @@ private fun ProductCard(type: CommonEnum.Product) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 if (type == CommonEnum.Product.U) {
-                    ProductCardItem(itemWidth, R.string.u1, R.drawable.u1,"U1")
+                    ProductCardItem(itemWidth, R.string.u1, R.drawable.u1, "U1")
                     Spacer(modifier = Modifier.width(5.dp))
-                    ProductCardItem(itemWidth, R.string.u2, R.drawable.u2,"U2")
+                    ProductCardItem(itemWidth, R.string.u2, R.drawable.u2, "U2")
                 }
                 if (type == CommonEnum.Product.R) {
-                    ProductCardItem(itemWidth, R.string.r1, R.drawable.r1,"R1")
+                    ProductCardItem(itemWidth, R.string.r1, R.drawable.r1, "R1")
                     Spacer(modifier = Modifier.width(5.dp))
-                    ProductCardItem(itemWidth, R.string.r2, R.drawable.r2,"R2")
+                    ProductCardItem(itemWidth, R.string.r2, R.drawable.r2, "R2")
                 }
                 if (type == CommonEnum.Product.ZXC) {
-                    ProductCardItem(itemWidth, R.string.zxc, R.drawable.dsetv,"Z")
+                    ProductCardItem(itemWidth, R.string.zxc, R.drawable.dsetv, "Z")
                     Spacer(modifier = Modifier.width(5.dp))
-                    ProductCardItem(itemWidth, R.string.qf, R.drawable.ball,"!")
+                    ProductCardItem(itemWidth, R.string.qf, R.drawable.ball, "!")
                 }
                 if (type == CommonEnum.Product.E) {
-                    ProductCardItem(itemWidth, R.string.e1, R.drawable.e1,"E1")
+                    ProductCardItem(itemWidth, R.string.e1, R.drawable.e1, "E1")
                     Spacer(modifier = Modifier.width(5.dp))
                     ProductCardExpect(itemWidth)
                 }
@@ -568,18 +569,13 @@ private fun ProductCardExpect(width: Dp) {
 }
 
 @Composable
-private fun ProductCardItem(width: Dp, stringId: Int, drawId: Int,product: String) {
+private fun ProductCardItem(width: Dp, stringId: Int, drawId: Int, product: String) {
     val context = LocalContext.current
     Button(
         modifier = Modifier
             .width(width)
             .height(width),
-        onClick = {
-            val intent = Intent(context, ProductActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            intent.putExtra("product",product)
-            context?.startActivity(intent)
-        },
+        onClick = { enterProductEvent(context, product) },
         contentPadding = PaddingValues(
             start = 0.dp,
             top = 0.dp,
@@ -605,4 +601,11 @@ private fun ProductCardItem(width: Dp, stringId: Int, drawId: Int,product: Strin
             )
         }
     }
+}
+
+private fun enterProductEvent(context: Context, product: String) {
+    val intent = Intent(context, ProductC2Activity::class.java)
+    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+    intent.putExtra("product", product)
+    context?.startActivity(intent)
 }

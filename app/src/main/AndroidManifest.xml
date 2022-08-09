@@ -37,8 +37,9 @@
         <activity android:name=".activities.AutoActivity"/>
         <activity android:name=".activities.ChoiceActivity"/>
         <activity android:name=".activities.ProductActivity"/>
-
-
+        <activity android:name=".activities.product.c2.ProductC2Activity"/>
+        <!--验证NFC权限-->
+        <activity android:name=".activities.auth.AuthNewActivity"/>
 
     </application>
 

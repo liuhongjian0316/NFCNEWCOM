@@ -7,6 +7,7 @@ import android.util.Log
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
@@ -26,6 +27,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -48,7 +50,6 @@ class C2Product {
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun C2Product(series:Byte) {
-    Log.e("series",series.toString())
     val sysUiController = rememberSystemUiController()
     SideEffect {
         sysUiController.setStatusBarColor(
@@ -379,10 +380,6 @@ fun C2Product(series:Byte) {
                             }
                         }
                     }
-
-                    RadioButton(selected = true, onClick = {
-                        // TODO
-                    })
                     ReadWriteAlert(openDialog, mode)
                 }
             )
@@ -419,86 +416,25 @@ private fun clickEvent(type: CommonEnum.BottomPop, context: Context) {
 
 @Composable
 private fun Top(width: Dp) {
-    var spanList: MutableList<String> = mutableListOf(
-        stringResource(id = R.string.ctr_open),
-        stringResource(id = R.string.feed_open),
-        stringResource(id = R.string.supply_temp),
-        stringResource(id = R.string.return_temp),
-        stringResource(id = R.string.supply_pressure),
-        stringResource(id = R.string.return_pressure),
-        stringResource(id = R.string.software_version),
-    )
-    var iconList: MutableList<Painter> = mutableListOf(
-        painterResource(id = R.drawable.ic_open),
-        painterResource(id = R.drawable.ic_open),
-        painterResource(id = R.drawable.ic_temp),
-        painterResource(id = R.drawable.ic_temp),
-        painterResource(id = R.drawable.ic_pressure),
-        painterResource(id = R.drawable.ic_pressure),
-        painterResource(id = R.drawable.ic_version),
-    )
-    var valueList by remember {
-        mutableStateOf(
-            mutableListOf(
-                "100%",
-                "100%",
-                "100℃",
-                "100℃",
-                "100Kpa",
-                "100Kpa",
-                "1024",
-            )
-        )
-    }
-    Column(
+    Row(
         modifier = Modifier
-            .fillMaxSize()
-            .padding(0.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
+            .height(60.dp)
+            .width(width)
+            .padding(10.dp, 10.dp),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment =  Alignment.CenterVertically,
     ) {
-        Spacer(
-            modifier = Modifier
-                .height(2.dp)
-                .width(width)
-        )
-        Row(
-            horizontalArrangement = Arrangement.Start,
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier
-                .clickable(enabled = true) { }
-                .width(width - Dp(8f))
-                .height(300.dp)
-                .background(
-                    color = MaterialTheme.colors.background,
-                    shape = RoundedCornerShape(4.dp)
-                )
-        ) {
+        Row(modifier = Modifier.fillMaxHeight().width(30.dp).weight(1f),horizontalArrangement = Arrangement.Start,
+            verticalAlignment =  Alignment.CenterVertically,) {
             Image(
-                modifier = Modifier
-                    .width(width = width / 3)
-                    .height(300.dp)
-                    .padding(0.dp, 0.dp),
-                painter = painterResource(id = R.drawable.u11),
-                contentDescription = null,
-                contentScale = ContentScale.FillHeight,
+                painterResource(id = R.drawable.ic_localcontrol), contentDescription = null, modifier = Modifier
+                    .padding(0.dp, 0.dp)
+                    .align(Alignment.CenterVertically)
+                    .size(16.dp), colorFilter = ColorFilter.tint(color = MaterialTheme.colors.onSurface)
             )
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
-            ) {
-                for ((index, item) in spanList.withIndex()) {
-                    TopListItem(
-                        iconList[index],
-                        item,
-                        valueList[index],
-                        width - Dp(8f) - (width / 3)
-                    )
-                    Divider(
-                        modifier = Modifier.padding(16.dp, 0.dp)
-                    )
-                }
-            }
+            Text(text = "IMEI：",fontSize=16.sp, color = Color.Black)
         }
+        Text(text = "98987158845545454545",fontSize=16.sp, color = Color.Black, modifier = Modifier.weight(1f))
     }
 }
 

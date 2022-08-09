@@ -62,6 +62,8 @@ class NewNfcHelper {
      */
     val RESULT_SECTOR = "res:sector"
 
+    val NFC_REQUEST_CODE = 11010299;
+
 
     /**
      * 是否支持MifareUltralight读写
